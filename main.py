@@ -1,4 +1,4 @@
-from main import DoublyLinkedList
+from structures import DoublyLinkedList
 
 from rich.console import Console
 from rich.panel import Panel
