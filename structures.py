@@ -9,15 +9,6 @@ class DoublyLinkedList():
         self.head = None
         self._size = 0
     
-    def _getnode(self, index):
-        pointer = self.head
-        for i in range(index):
-            if pointer: 
-                pointer = pointer.next
-            else:
-                raise IndexError
-        return pointer 
-    
     def append(self, data):
         if self.head == None:
             self.head = Node(data)
@@ -42,23 +33,53 @@ class DoublyLinkedList():
             self.head = new_node
             self._size += 1
     
-    def add_node_after(self, index, data):
+    def remove(self, data: str):
         current = self.head
         while (current):
-            if current.next == None and current.data == index:
-                self.append(data)
+            if current.data == data and current == self.head:
+                if current.next == None:
+                    current = None
+                    self.head = None
+                    self._size -= 1
+                    return
+        
+                else:
+                    temp = current.next
+                    current.next = None
+                    temp.previous = None
+                    current = None
+                    self.head = temp
+                    self._size -= 1
+                    return
             
+            elif current.data == data:
+                if current.next:
+                    nxt = current.next
+                    previous = current.previous
+                    previous.next = nxt
+                    nxt.previous = previous
+                    current.next = None
+                    current.previuous = None
+                    current = None
+                    self._size -= 1
+                    return
+                else:
+                    previous = current.previous
+                    previous.next = None
+                    current.previous = None
+                    current = None 
+                    self._size -= 1
+                    return
+        current = current.next
+
           
     def __repr__(self):
             r = ""
-            pointer = self.head
-            while(pointer):
-                r = r + str(pointer.data) + "\n"
-                pointer = pointer.next
+            current = self.head
+            while(current):
+                r = r + str(current.data) + "\n"
+                current = current.next
             return r
         
     def __str__(self):
           return self.__repr__()
-
-
-
