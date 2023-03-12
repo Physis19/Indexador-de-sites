@@ -35,7 +35,7 @@ class DoublyLinkedList():
     
     def remove(self, data: str):
         current = self.head
-        while (current):
+        while current:
             if current.data == data and current == self.head:
                 if current.next == None:
                     current = None
@@ -71,6 +71,17 @@ class DoublyLinkedList():
                     self._size -= 1
                     return
         current = current.next
+    
+    def show_list(self):
+        current = self.head
+        index = 0
+        websites = []
+        while current:
+            website_data = (index, current.data)
+            websites.append(website_data)
+            current = current.next
+            index += 1
+        return websites
 
           
     def __repr__(self):
@@ -83,3 +94,10 @@ class DoublyLinkedList():
         
     def __str__(self):
           return self.__repr__()
+
+
+#lista = DoublyLinkedList()
+#lista.append('github.com')
+#lista.append('minecraft.com')
+#lista.append('bitwarden.com')
+#print(lista.show_list())
