@@ -83,7 +83,9 @@ class DoublyLinkedList():
             index += 1
         return websites
 
-          
+    def __len__(self):
+        return self._size
+
     def __repr__(self):
             r = ""
             current = self.head
@@ -96,8 +98,4 @@ class DoublyLinkedList():
           return self.__repr__()
 
 
-#lista = DoublyLinkedList()
-#lista.append('github.com')
-#lista.append('minecraft.com')
-#lista.append('bitwarden.com')
-#print(lista.show_list())
+
