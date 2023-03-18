@@ -1,3 +1,5 @@
+import random
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -9,7 +11,7 @@ class DoublyLinkedList():
         self.head = None
         self._size = 0
     
-    def append(self, data):
+    def add(self, data):
         if self.head == None:
             self.head = Node(data)
             self._size += 1
@@ -82,6 +84,13 @@ class DoublyLinkedList():
             current = current.next
             index += 1
         return websites
+
+    def random_acess(self):
+        current = self.head
+        random_index = random.randint(0, self._size - 1)
+        for i in range(random_index):
+            current = current.next
+        return current.data
 
     def __len__(self):
         return self._size

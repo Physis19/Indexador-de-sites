@@ -1,4 +1,5 @@
 import time
+from websites_info import all_websites
 from os import system, name
 from structures import DoublyLinkedList
 from rich.console import Console
@@ -9,18 +10,8 @@ from rich.progress import track
 
 console = Console()
 
-all_websites = DoublyLinkedList()
-all_websites.append(1)
-all_websites.append(2)
-entretenimento = DoublyLinkedList()
-entretenimento.append(3)
-entretenimento.append(4)
-noticias = DoublyLinkedList()
-conhecimento = DoublyLinkedList()
-emails = DoublyLinkedList()
-categories = [all_websites, entretenimento, noticias, conhecimento, emails]
 def construct_table(websites_list):
-    websites_table = Table(box = box.ROUNDED, show_lines = True, title = 'Lista de sites :keyboard:')
+    websites_table = Table(box = box.ROUNDED, show_lines = True, title = 'Lista de sites')
     websites_table.add_column("Index", justify="center", style="cyan", no_wrap=True)
     websites_table.add_column("URL", justify='center', style="magenta")
     
@@ -51,7 +42,7 @@ def menu():
                                                 
  [/bold]                                               
 [bold cyan]1.[/bold cyan] [bold green]Adicionar um novo site [/bold green]          [bold cyan]2.[/bold cyan][bold green] Deletar um site[/bold green]              
-[bold cyan]3.[/bold cyan] [bold green]Ver todos os sites[/bold green]               [bold cyan]4.[/bold cyan] [bold green]Ver todas as categorias[/bold green]
+[bold cyan]3.[/bold cyan] [bold green]Ver todos os sites[/bold green]               [bold cyan]4.[/bold cyan] [bold green]Estou com sorte ![/bold green]
 [bold cyan]0.[/bold cyan] [bold green]Sair do programa[/bold green]
  ''', title="[bold green]Oxi?[/bold green]"))
         option = console.input('Digite o número da opção desejada: ')
@@ -59,7 +50,7 @@ def menu():
         match option:
             case "1":
                 data = console.input('Digite a URL do site: ')
-                all_websites.append(data)
+                all_websites.add(data)
                 for i in track(range(3), description= 'Adicionando...'):
                     time.sleep(1)
                 console.print(f'O site {data} foi adicionado !')
@@ -75,21 +66,14 @@ def menu():
                 clear()      
             case "3":
                 construct_table(all_websites)
-            case "4":
-                for i in categories:
-                    construct_table(i)
-            case "5":
-                data = [console.input('Qual o nome deseja dar a categoria ? ')]
-                categories.append
-                for i in track(range(3), description= 'Criando...'):
-                    time.sleep(1)
-                console.print(f'A categoria {data} foi criada !')
-                time.sleep(3)
+                console.input('Pressione Enter para voltar ao menu')
                 clear()
-                                
-                
+            case "4":
+                random_link = all_websites.random_acess()
+                console.print(f'Aqui está :) [link={random_link}]{random_link}[/link]')
+                console.input('Pressione Enter para voltar ao menu')
+                clear()                
             case "0":
                 break
         
-
 menu()
