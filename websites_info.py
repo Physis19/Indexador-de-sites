@@ -1,0 +1,11 @@
+from structures import DoublyLinkedList
+all_websites = DoublyLinkedList()
+all_websites.add('youtube.com.br')
+all_websites.add('amazon.com.br')
+all_websites.add('mercadolivre.com.br')
+all_websites.add('wikipedia.org')
+all_websites.add('github.com')
+all_websites.add('g1.globo.com')
+all_websites.add('twitter.com')
+all_websites.add('facebook.com')
+all_websites.add('reddit.com')
