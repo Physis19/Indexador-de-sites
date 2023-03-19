@@ -50,18 +50,18 @@ def menu():
         match option:
             case "1":
                 data = console.input('Digite a URL do site: ')
-                all_websites.add(data)
+                added = all_websites.add(data)
                 for i in track(range(3), description= 'Adicionando...'):
                     time.sleep(1)
-                console.print(f'O site {data} foi adicionado !')
+                console.print(f'O site {added} foi adicionado !')
                 time.sleep(3)
                 clear()
             case "2":
                 data = console.input('Digite a URL do site: ')
+                removed = all_websites.remove(data)
                 for i in track(range(3), description= 'Removendo...'):
                     time.sleep(1)
-                all_websites.remove(data)
-                console.print(f'O site {data} removido !')
+                console.print(f'O site {removed} removido !')
                 time.sleep(3)
                 clear()      
             case "3":

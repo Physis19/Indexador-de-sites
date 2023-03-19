@@ -15,6 +15,7 @@ class DoublyLinkedList():
         if self.head == None:
             self.head = Node(data)
             self._size += 1
+            return self.head.data
         else:
             new_node = Node(data)
             current = self.head
@@ -23,6 +24,8 @@ class DoublyLinkedList():
             current.next = new_node
             new_node.previous = current
             self._size += 1
+            return new_node.data
+        
     
     def prepend(self,data):
         if self.head == None:
@@ -39,40 +42,35 @@ class DoublyLinkedList():
         current = self.head
         while current:
             if current.data == data and current == self.head:
-                if current.next == None:
-                    current = None
+                if not current.next:
                     self.head = None
-                    self._size -= 1
-                    return
-        
+                    return current.data
+                
                 else:
-                    temp = current.next
-                    current.next = None
-                    temp.previous = None
-                    current = None
-                    self.head = temp
-                    self._size -= 1
-                    return
+                    self.head = current.next
+                    current.previous = None
+                    return current.data
             
             elif current.data == data:
                 if current.next:
                     nxt = current.next
-                    previous = current.previous
-                    previous.next = nxt
-                    nxt.previous = previous
+                    prev = current.previous
+                    prev.next = nxt
+                    nxt.prev = prev
                     current.next = None
-                    current.previuous = None
-                    current = None
-                    self._size -= 1
-                    return
-                else:
-                    previous = current.previous
-                    previous.next = None
                     current.previous = None
-                    current = None 
-                    self._size -= 1
-                    return
-        current = current.next
+                    return current.data
+                
+                else:
+                    prev = current.previous
+                    prev.next = None
+                    current.previous = None
+                    return current.data
+            
+            current = current.next
+
+        raise ValueError(f'O site {data} não foi encontrado, verifique se a URL está correta')
+
     
     def show_list(self):
         current = self.head
@@ -106,5 +104,13 @@ class DoublyLinkedList():
     def __str__(self):
           return self.__repr__()
 
-
-
+#lista = DoublyLinkedList()
+#lista.add(1)
+#lista.add(2)
+#lista.add(3)
+#print(lista)
+#print('------------')
+#removed = lista.remove(1)
+#print(f'nó removido:{removed.data}')
+#print('------------')
+#print(lista)
